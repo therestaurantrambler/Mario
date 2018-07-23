@@ -1,0 +1,61 @@
+#include<stdio.h>
+#include<cs50.h>
+
+//This program creates a two sided staircase (similiar to those seen in classic Mario games)
+//of a given height. The height is based on user input.
+
+
+void hash(int n);
+void blank(int n);
+void say(string s, int n);
+
+int height;
+
+int main(void)
+{
+    //Prompt the user for an integer between 0 and 23. Repeat until an acceptable integer is found.
+    //variable height = acceptable int.
+    do
+    {
+    printf("Please type a whole number between 0 and 23.\n");
+    height = get_int();
+    }
+    while(height<0 || height>23);
+
+
+    //Build two sided stair cases using iterations to build a square of size height. The square is built
+    //using hash and blank, as defined below.
+    //
+    for(int i = 0; i<=height; i++)
+    {
+        blank(23-i);
+        hash(i);
+        printf("   ");
+        hash(i);
+        blank(23-i);
+        printf("\n");
+    }
+
+}
+
+
+//Define blank using say, as defined below. Blank explicitly states to print a blank space.
+void blank(int n)
+{
+    say(" ",n);
+}
+
+
+//Define hash using say, as defined below. Hash explicitly states to print a # symbol.
+void hash(int n)
+{
+    say("#",n);
+}
+
+
+//Define say that takes a string and repeats it n times.
+void say(string s, int n)
+{
+    for(int i = 0; i<n; i++)
+    printf("%s", s);
+}
